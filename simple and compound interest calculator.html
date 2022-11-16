@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple and compound calculator </title>
+  
+  <style>
+   body{background:red; }
+    
+    #si{
+     height:130px;
+     margin: 15px 5px 20px 5px;
+     border : 1px solid grey;
+     box-Shadow : 3px 3px 20px black;
+     background : white;
+     border-radius: 10px;
+     text-align: center;}
+    
+ button{
+ width :90%;
+ padding:10px; 
+ border-radius: 20px;
+ background :light-grey;
+ color: blueviolet;
+ text-shadow: 2px 2px 3px grey;
+ box-shadow : inset -1px 1px 5px grey;
+ margin: 5px 5px 5px 10px;} 
+ button:active{ background:olive;}
+ button:focus{background:olive;}
+
+ input{padding: 10px;
+      width: 90%;
+      margin: 5px;
+      border-radius:10px;
+      display: none;}
+  .seen{display : grid;}     
+    
+
+ 
+ footer{
+      margin-bottom:-2%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 9pt;
+    font-family: Arial, sans-serif;}
+    
+#refresh {
+  background: rgba(255, 190, 203, 0.5);
+  border-radius: 20px;
+  border: 1px solid grey;
+  color: rgba(0, 0, 0, 0.5);}
+     
+#refresh:hover{
+  background :rgba(105, 105, 105, 1);
+  border-radius:20px;
+  transition: 100ms;
+  text-align: center;
+  color: white;}
+
+#mode{ 
+  position : fixed;
+  right: 3%;
+  top : 45%;
+  margin : -10px ;
+  height:25px;
+  width :25px;
+  background :rgba(255, 190, 203, 0.3);
+  border-radius : 20px;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 8px darkgrey;
+  color: rgba(0, 0, 0, 0.1);} 
+  #mode:hover{
+  background :rgba(105, 105, 105, 1);
+  border-radius:20px;
+  transition: 100ms;
+  text-align: center;
+  color: white;}
+ 
+ </style>
+</head>
+<body id="body">
+  
+<div id=si>  </div>
+<div id="mode" onclick="color()" ></div>
+
+
+<input class="" id="first" type="number" name="first" placeholder="enter principle amount">
+
+<input class="" id="second" type="number"  name="second" placeholder="enter percentage rate">
+
+<input class="" id="third" type="number" name="third" placeholder="enter time in year">
+  
+
+ <button id="refresh" onclick= window.location.reload(); onselectstart="return false">REFRESH </button> 
+ 
+<button id="button" type="submit" class="bgclr" onselectstart="return false" >find Simple intrest</button>
+
+<button id="button5" class="bgclr" type="submit" onselectstart="return false">find  P, R or T of Simple intrest </button>
+
+<button id="button2" type="submit" onselectstart="return false"> find compound intrest  </button>
+
+<button id="button6" type="submit" class="bgclr" onselectstart="return false">calculate half yearly compound intrest</button>
+
+<button id="button7" type="submit" class="bgclr" onselectstart="return false"> find rate of compound intrest</button>
+
+<button id="button8" type="submit" class="bgclr" onselectstart="return false"> find time of compound intrest</button>
+
+<button id="button9" type="submit" class="bgclr" onselectstart="return false"> find principal amount of compound intrest </button>
+
+<button  id="button4"  type="submit" class="bgclr" onselectstart="return false">convert months or days in year </button>
+
+<button id="button3" type="submit" class="bgclr" onselectstart="return false">calculator</button>
+
+
+<footer>
+  ©simple & compound intrest calculator by nia™
+</footer>
+
+
+
+<script>
+
+function seen(){
+first =document.getElementById("first")
+second=document.getElementById("second")
+third=document.getElementById("third")
+ first.classList.add("seen");
+ second.classList.add("seen");
+ third.classList.add("seen");}
+ 
+function color() {
+let Clr = prompt("enter any color name to change background")
+//input=document.querySelector().value;
+body = document.querySelector("#body")
+body.style.backgroundColor = Clr} 
+
+///simple intrest 
+var submit = document.getElementById("button")
+submit.addEventListener("click",function (){
+  
+ 
+  seen();
+  submit.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter principal amount ';
+  document.getElementsByName('second')[0].placeholder='enter time ';
+  document.getElementsByName('third')[0].placeholder='enter percentage rate';
+  
+  
+var div = document.getElementById("si")
+var p = document.getElementById("first").value
+P = Number(p)
+var r = document.getElementById("second").value
+var t = document.getElementById("third").value
+let ans = (p*r*t)/100;
+  let ans2 =  P + ans;
+  div.innerHTML= "<br>" + "<br>" + "Total amount : " + ans2
+  + "<br>" + "<br>"  +"simple intrest : " + ans;
+     div.style.background= "orange"})
+     
+     
+     /////compound interest ///////
+var submit2 = document.getElementById("button2")
+submit2.addEventListener("click", function (){
+  
+  
+  seen();
+  submit2.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter principal amount ';
+  document.getElementsByName('second')[0].placeholder='enter percentage rate';
+  document.getElementsByName('third')[0].placeholder='enter time in years';
+  
+var div = document.getElementById("si")
+var p = document.getElementById("first").value
+P2 = Number(p)
+var r = document.getElementById("second").value
+var t=document.getElementById("third" ).value
+var ci_amount = p*(Math.pow(1+r/100,t));
+var ci_amount_Dec = ci_amount.toFixed(3);
+var only_ci = ci_amount_Dec - p;
+div.innerHTML= "<br>" + "<br>" + "<b> total amount <b> : " + ci_amount_Dec+ "<br>" + "<br>" +" compound intrest : " + only_ci;
+     div.style.background = "pink";})
+     
+     
+  //////simple calculator /////
+var submit3 = document.getElementById("button3");
+submit3.onclick = function() {
+  
+  
+  seen();
+  submit3.textContent = 'submit';
+  
+  
+var div = document.getElementById("si")
+var x=parseInt(prompt("enter value 1"));
+var y=parseInt(prompt("enter value 2"));
+var z=parseInt(prompt("press (1 for +),(2 for -  ),(3 for multiple ),(4 for division)" ));
+div.style.background = "lightgreen" ;
+ switch(z) {
+        case 1 :
+        z=x+y;
+        document.getElementById("si").innerHTML ="<br>" + "<br>" + x + "+" + y +  "=" + z ;
+        break;
+        
+        case 2 :
+        z=x-y;
+        document.getElementById("si").innerHTML ="<br>" + "<br>" + x + "-" + y +  "=" + z  ;
+        break;
+        
+        case 3 :
+        z=x*y;
+        document.getElementById("si").innerHTML ="<br>" + "<br>" + x + "×" + y +  "=" + z ;
+        break;
+        
+        case 4 :
+        z=x/y;
+        document.getElementById("si").innerHTML ="<br>" + "<br>" + x + "÷" + y +  "=" + z ;
+        break;
+        
+        default :
+        document.getElementById("si").innerHTML = "<br>" + "<br>" + "try again" ;}
+      } ;
+     
+     /////time convertor//////////
+var submit4 = document.getElementById("button4")
+  
+  submit4.onclick = function() {
+    
+    
+    seen();
+    submit4.textContent = 'submit';
+    
+  document.getElementsByName('first')[0].placeholder='enter year';
+  document.getElementsByName('second')[0].placeholder='enter month';
+  document.getElementsByName('third')[0].placeholder='enter day';
+   
+    let x = document.getElementById("first").value;
+    let y = document.getElementById("second").value;
+    let day = document.getElementById("third").value;
+    let dm = (day / 365);
+    let xm = (y / 12) ;
+    let zm = xm + dm;
+    let cc = zm + Number(x)
+    document.getElementById("si").innerHTML ="<br>" + "<br>" + cc + "<br>" + "approximately years : " + Math.round(cc)
+  }
+
+//rate, principal, time formula //
+var submit5 = document.getElementById("button5")
+submit5.addEventListener("click",
+function (){
+  
+  
+  seen();
+  submit5.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter simple intrest';
+  document.getElementsByName('second')[0].placeholder='enter first value from rate/time/principal amount';
+  document.getElementsByName('third')[0].placeholder='enter second value from rate/time/principal amount';
+  
+ var x=document.getElementById("first").value;
+var y=document.getElementById("second").value;
+var day=document.getElementById("third").value;
+let answ = x*100
+let answr = y*day
+let final = answ/answr 
+ var div = document.getElementById("si")
+  div.innerHTML= "<br>" + "<br>" +"answer : " + final;
+    div.style.background = "purple"})
+     
+     
+ ///quarterly ////
+ var submit6 = document.getElementById("button6");
+submit6.addEventListener("click", function (){
+  
+  
+  seen();
+  submit6.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter principal amount ';
+  document.getElementsByName('second')[0].placeholder='enter percentage rate';
+  document.getElementsByName('third')[0].placeholder='enter time in year';
+  
+var div = document.getElementById("si")
+var p = document.getElementById("first").value
+P2 = Number(p)
+var r = document.getElementById("second").value
+var t=document.getElementById("third" ).value
+var ci_amount = p*(Math.pow(1+r/200,2*t));
+var ci_amount_Dec = ci_amount.toFixed(3);
+var only_ci = ci_amount_Dec - p;
+
+div.innerHTML= "<br>" + "<br>" +"<b> total amount <b> : " + ci_amount_Dec+ "<br>" + "<br>" +" compound intrest : " + only_ci;
+     div.style.background = "pink"; })
+     
+     
+//formula of rate in compound intrest  
+var submit_seven = document.getElementById("button7");
+submit_seven.onclick = function (){
+  
+  
+  seen();
+  submit_seven.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter amount';
+  document.getElementsByName('second')[0].placeholder='enter principle amount';
+  document.getElementsByName('third')[0].placeholder='enter time';
+  
+var div = document.getElementById("si");
+var A = document.getElementById("first").value;
+var R= document.getElementById("second").value;
+var t= document.getElementById("third").value;
+var ci_amount = (Math.pow( A/R, 1/t) - 1) ;
+ci_amount2 = ci_amount*100
+
+var ci_amount_Dec2 = ci_amount2.toFixed(3);
+div.innerHTML= "<br>" + "<br>" +"<b> rate of compound intrest <b> : " + ci_amount_Dec2 + 
+"<br>"+
+ "<br> in approx : " + Math.round(ci_amount_Dec2);
+ div.style.background = "pink";}
+ 
+ 
+//formula of time in compound intrest   
+var submit8 = document.getElementById("button8");
+submit8.onclick = function (){
+  
+  
+  seen();
+  submit8.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder='enter total amount';
+  document.getElementsByName('second')[0].placeholder='enter  principle amount';
+  document.getElementsByName('third')[0].placeholder='enter rate';
+  
+var div = document.getElementById("si");
+let A = document.getElementById("first").value;
+let P =document.getElementById("second").value;
+let r= document.getElementById("third").value;
+let ap = A/P ;
+let apl = Math.log(ap) ;
+let R = r/100 ;
+let Ri = Math.log(1+R) ;
+let ci_amount2 = apl/Ri ;
+var ci_amount_Dec2 = ci_amount2.toFixed(3);
+div.innerHTML= "<br>" + "<br>" +"<b> rate of compound intrest <b> : " + ci_amount_Dec2 + 
+"<br>"+
+ "<br> approximately : " + Math.round(ci_amount_Dec2) + " years";
+ div.style.background = "black";
+ div.style.color = "white";
+}
+     
+     
+ //formula of principal amount in compound intrest   
+var submit9 = document.getElementById("button9");
+submit9.onclick = function (){
+  
+  
+  
+  seen();
+  submit9.textContent = 'submit';
+  
+  document.getElementsByName('first')[0].placeholder=' enter total amount';
+  document.getElementsByName('second')[0].placeholder=' enter percentage rate';
+  document.getElementsByName('third')[0].placeholder=' enter time';
+  
+  
+var div = document.getElementById("si");
+var A = document.getElementById("first").value;
+let Rp= document.getElementById("second").value;
+let t= document.getElementById("third").value;
+let R = 1 + (Rp/100);
+let ci_amount =A/ (Math.pow( R , t));
+let ci_amount_Dec2=ci_amount.toFixed(3);
+div.innerHTML= "<br>" + "<br>" +"<b> rate of compound intrest <b> : " + ci_amount_Dec2 + 
+"<br>"+
+ "<br> in approx : " + Math.round(ci_amount_Dec2);
+ div.style.background = "grey";}
+ 
+     
+</script>
+</body>
+</html>
